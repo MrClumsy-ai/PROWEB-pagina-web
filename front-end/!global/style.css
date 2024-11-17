@@ -1,3 +1,6 @@
+/* TODO EL CSS GLOBAL QUE SE USARA EN TODA LA PAGINA WEB */
+
+/* variables */
 :root {
 	--black: #333;
 	--yellow: #ffde59;
@@ -15,14 +18,27 @@ body {
 	background-color: var(--black);
 }
 
+/* para q despues del nav (que tiene posicion fija) haya espacio para el contenido principal */
 main {
 	margin-top: 80px;
 }
 
+/* contenido dentro de la etiqueta main */
 main * {
 	margin: auto;
 }
 
+/* esta es la navbar q se queda fija hasta arriba */
+.navbar {
+	background-color: var(--orange);
+	height: 50px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+/* este debe ser usado con un div */
 .title {
 	text-align: center;
 	width: 40%;
@@ -31,11 +47,13 @@ main * {
 	border-radius: 15px;
 }
 
+/* este es el contenido del div con clase titulo */
 .title * {
 	color: #000;
 	text-align: center;
 }
 
+/* lo mismo que con el titulo */
 .content {
 	margin-top: 10px;
 	background-color: var(--white);
@@ -44,13 +62,4 @@ main * {
 	padding: 30px;
 	border-radius: 15px;
 	text-align: center;
-}
-
-.navbar {
-	background-color: var(--orange);
-	height: 50px;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
 }
