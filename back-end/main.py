@@ -99,7 +99,7 @@ async def get_like(publicacion_id: int, usuario_id: int, db: db_dependency):
     return db_like
 
 # contadores
-@app.get("/likes/{publicacion_id}", status_code=status.HTTP_200_OK, tags=["CONTADORES"])
+@app.get("/contadores/likes/{publicacion_id}", status_code=status.HTTP_200_OK, tags=["CONTADORES"])
 async def get_num_likes(publicacion_id: int, db: db_dependency):
     """da la cantidad de likes que tiene una publicacion"""
     db_likes = db.query(models.Likes).filter(models.Likes.IdPublicacion == publicacion_id).count()
@@ -107,7 +107,7 @@ async def get_num_likes(publicacion_id: int, db: db_dependency):
         raise HTTPException(status_code=404, detail="publicacion no encontrada")
     return db_likes
 
-@app.get("/comentarios/{publicacion_id}", status_code=status.HTTP_200_OK, tags=["CONTADORES"])
+@app.get("/contadores/comentarios/{publicacion_id}", status_code=status.HTTP_200_OK, tags=["CONTADORES"])
 async def get_num_comentarios(publicacion_id: int, db: db_dependency):
     """da la cantidad de comentarios que tiene una publicacion"""
     db_comentarios = db.query(models.Comentario).filter(models.Comentario.IdPublicacion == publicacion_id).count()
@@ -115,13 +115,21 @@ async def get_num_comentarios(publicacion_id: int, db: db_dependency):
         raise HTTPException(status_code=404, detail="publicacion no encontrada")
     return db_comentarios
 
-@app.get("/publicaciones/{usuario_id}", status_code=status.HTTP_200_OK, tags=["CONTADORES"])
+@app.get("/contadores/publicaciones/{usuario_id}", status_code=status.HTTP_200_OK, tags=["CONTADORES"])
 async def get_num_publicaciones(usuario_id: int, db: db_dependency):
     """da la cantidad de publicaciones que ha hecho el usuario"""
     db_publicaciones = db.query(models.Publicacion).filter(models.Publicacion.IdUsuario == usuario_id).count()
     if db_publicaciones is None:
         raise HTTPException(status_code=404, detail="usuario no encontrado")
     return db_publicaciones
+
+@app.get("/contadores/hashtags/{hashtag_id}", status_code=status.HTTP_200_OK, tags=["CONTADORES"])
+async def get_num_hashtag(hashtag_id: int, db: db_dependency):
+    """da la cantidad de veces que se ha utilizado el hashtag"""
+    db_hashtag = db.query(models.Hashtag).filter(models.Hashtag.Id == hashtag_id).count()
+    if db_hashtag is None:
+        raise HTTPException(status_code=404, detail="usuario no encontrado")
+    return db_hashtag
 
 # POST
 @app.post("/usuarios/", status_code=status.HTTP_201_CREATED, tags=["POST"])
