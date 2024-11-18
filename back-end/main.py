@@ -17,3 +17,12 @@ class UsuarioBase(BaseModel):
     IdRol: int
     Nombre: str
     Contrasena: str
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+db_dependency = Annotated[Session, Depends(get_db)]
