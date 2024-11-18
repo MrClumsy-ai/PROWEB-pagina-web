@@ -1,6 +1,19 @@
-from fastapi import FastAPI
-app = FastAPI()
+from fastapi import FastAPI, HTTPException, Depends, status
+from pydantic import BaseModel
+from typing import Annotated
+import models
+from database import engine, SessionLocal
+from sqlalchemy.orm import Session
 
-@app.get("/")
-def root():
-    return {"message" : "hello"}
+app = FastAPI()
+models.Base.metadata.create_all(bind=engine)
+
+class PublicacionBase(BaseModel):
+    Titulo: str
+    IdUsuario: int
+    Descripcion: str
+
+class UsuarioBase(BaseModel):
+    IdRol: int
+    Nombre: str
+    Contrasena: str
