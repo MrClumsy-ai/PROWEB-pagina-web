@@ -8,7 +8,6 @@
 <!-- correr el servidor -->
 
 uvicorn main:app --reload
-desde xampp control panel: iniciar apache & mysql
 
 <!-- documentacion -->
 

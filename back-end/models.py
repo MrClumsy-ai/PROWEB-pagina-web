@@ -38,7 +38,8 @@ class DetallePublicacionHashtag(Base):
     IdPublicacion = Column(Integer) # fk
     IdHashtag = Column(Integer) # fk
     __table_args__ = (
-        PrimaryKeyConstraint(IdPublicacion, IdHashtag)
+        PrimaryKeyConstraint(IdPublicacion, IdHashtag),
+        {}
     )
 
 class Likes(Base):
@@ -46,5 +47,6 @@ class Likes(Base):
     IdPublicacion = Column(Integer) # fk
     IdUsuario = Column(Integer) # fk
     __table_args__ = (
-        PrimaryKeyConstraint(IdPublicacion, IdUsuario)
+        PrimaryKeyConstraint(IdPublicacion, IdUsuario),
+        {}
     )
