@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String, BLOB, PrimaryKeyConstraint
+from sqlalchemy import Column, Integer, String, BLOB, PrimaryKeyConstraint
 from database import Base
 
 class Usuario(Base):
