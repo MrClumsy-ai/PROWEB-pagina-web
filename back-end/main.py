@@ -1,5 +1,7 @@
-# terminal:
+# terminal (bash):
 # py -m pip install mysql-connector-python
+# py -m pip install virtualenv
+# source venv/Scripts/activate
 import mysql.connector
 
 db = mysql.connector.connect(
