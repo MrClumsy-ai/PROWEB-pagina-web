@@ -8,16 +8,16 @@ CREATE TABLE Rol(
 
 CREATE TABLE Hashtag(
 	Id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-	Texto VARCHAR(128)
+	Texto VARCHAR(128) NOT NULL
 );
 
 CREATE TABLE Usuario(
 	Id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-	IdRol INT,
+	IdRol INT NOT NULL,
 	Nombre VARCHAR(128) NOT NULL,
 	Contrasena VARCHAR(128) NOT NULL,
 	FotoDePerfil BLOB,
-	FOREIGN KEY IdRol REFERENCES Rol(Id)
+	FOREIGN KEY (IdRol) REFERENCES Rol(Id)
 );
 
 CREATE TABLE Publicacion(
@@ -25,31 +25,31 @@ CREATE TABLE Publicacion(
 	IdUsuario INT NOT NULL,
 	Titulo VARCHAR(256),
 	Imagen BLOB NOT NULL,
-	Descripcion VARCHAR(512)
-	FOREIGN KEY IdUsuario REFERENCES Usuario(Id)
+	Descripcion VARCHAR(512),
+	FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id)
 );
 
 CREATE TABLE Comentario(
 	Id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	IdPublicacion INT NOT NULL,
 	IdUsuario INT NOT NULL,
-	Texto VARCHAR(128) NOT NULL
-	FOREIGN KEY IdPublicacion REFERENCES Publicacion(Id),
-	FOREIGN KEY IdUsuario REFERENCES Usuario(Id)
+	Texto VARCHAR(128) NOT NULL,
+	FOREIGN KEY (IdPublicacion) REFERENCES Publicacion(Id),
+	FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id)
 );
 
 CREATE TABLE Likes(
 	IdPublicacion INT NOT NULL,
 	IdUsuario INT NOT NULL,
-	FOREIGN KEY IdPublicacion REFERENCES Publicacion(Id),
-	FOREIGN KEY IdUsuario REFERENCES Usuario(Id),
+	FOREIGN KEY (IdPublicacion) REFERENCES Publicacion(Id),
+	FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id),
 	PRIMARY KEY (IdPublicacion, IdUsuario)
 );
 
 CREATE TABLE DetallePublicacionHashtag(
 	IdPublicacion INT NOT NULL,
 	IdHashtag INT NOT NULL,
-	FOREIGN KEY IdPublicacion REFERENCES Publicacion(Id),
-	FOREIGN KEY IdHashtag REFERENCES Hashtag(Id),
+	FOREIGN KEY (IdPublicacion) REFERENCES Publicacion(Id),
+	FOREIGN KEY (IdHashtag) REFERENCES Hashtag(Id),
 	PRIMARY KEY (IdPublicacion, IdHashtag)
 );
