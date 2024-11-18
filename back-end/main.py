@@ -74,14 +74,6 @@ async def get_publicacion(publicacion_id: int, db: db_dependency):
         raise HTTPException(status_code=404, detail="publicacion no encontrada")
     return db_publicacion
 
-@app.get("/comentarios/{publicacion_id}", status_code=status.HTTP_200_OK, tags=["GET"])
-async def get_comentarios_de_publicacion(publicacion_id:int, db: db_dependency):
-    """da un arreglo de comentarios con el id de una publicacion"""
-    db_comentarios = db.query(models.Comentario).filter(models.Comentario.IdPublicacion == publicacion_id)
-    if db_comentarios is None:
-        raise HTTPException(status_code=404, detail="publicacion no encontrada")
-    return db_comentarios
-
 @app.get("/hashtag/{hashtag_id}", status_code=status.HTTP_200_OK, tags=["GET"])
 async def get_hashtag(hashtag_id: int, db: db_dependency):
     """da un hashtag con su id"""
@@ -90,7 +82,40 @@ async def get_hashtag(hashtag_id: int, db: db_dependency):
         raise HTTPException(status_code=404, detail="hashtag no encontrada")
     return db_hashtag
 
-@app.get("/hashtags/{publicacion_id}", status_code=status.HTTP_200_OK, tags=["GET"])
+# LISTAS
+
+@app.get("/usuarios/", status_code=status.HTTP_200_OK, tags=["LISTAS"])
+async def get_usuarios(db:db_dependency):
+    """da todos los usuarios"""
+    db_usuarios = db.query(models.Usuario)
+    if db_usuarios is None:
+        raise HTTPException(status_code=404, detail="usuarios no encontrados")
+
+@app.get("/roles/", status_code=status.HTTP_200_OK, tags=["LISTAS"])
+async def get_roles(db:db_dependency):
+    """da la lista de los roles"""
+    db_roles = db.query(models.Rol)
+    if db_roles is None:
+        raise HTTPException(status_code=404, detail="roles no encontrados")
+    return db_roles
+
+@app.get("/comentarios/{publicacion_id}", status_code=status.HTTP_200_OK, tags=["LISTAS"])
+async def get_comentarios_de_publicacion(publicacion_id:int, db: db_dependency):
+    """da un arreglo de comentarios con el id de una publicacion"""
+    db_comentarios = db.query(models.Comentario).filter(models.Comentario.IdPublicacion == publicacion_id)
+    if db_comentarios is None:
+        raise HTTPException(status_code=404, detail="publicacion no encontrada")
+    return db_comentarios
+
+@app.get("/hashtags/", status_code=status.HTTP_200_OK, tags=["LISTAS"])
+async def get_hashtags(db:db_dependency):
+    """da la lista de hashtags"""
+    db_hashtags = db.query(models.Hashtag)
+    if db_hashtags is None:
+        raise HTTPException(status_code=404, detail="hashtags no encontrados")
+    return db_hashtags
+
+@app.get("/hashtags/{publicacion_id}", status_code=status.HTTP_200_OK, tags=["LISTAS"])
 async def get_hashtags_de_publicacion(publicacion_id: int, db: db_dependency):
     """da un arreglo de ids de hashtag con el id de la publicacion"""
     db_hashtags = db.query(models.DetallePublicacionHashtag.IdHashtag).filter(models.DetallePublicacionHashtag.IdPublicacion == publicacion_id)
@@ -98,23 +123,7 @@ async def get_hashtags_de_publicacion(publicacion_id: int, db: db_dependency):
         raise HTTPException(status_code=404, detail="publicacion no encontrada")
     return db_hashtags
 
-# @app.get("/detalle_publicacion_hashtag/{publicacion_id}&{hashtag_id}", status_code=status.HTTP_200_OK, tags=["GET"])
-# async def get_detalle_publicacion_hashtag(publicacion_id: int, hashtag_id: int, db: db_dependency):
-#     """da los detalles con los id de los 2"""
-#     db_pubhash = db.query(models.DetallePublicacionHashtag).filter(models.DetallePublicacionHashtag.IdPublicacion == publicacion_id, models.DetallePublicacionHashtag.IdHashtag == hashtag_id)
-#     if db_pubhash is None:
-#         raise HTTPException(status_code=404, detail="detalle publicacion hashtag no encontrado")
-#     return db_pubhash
-
-# @app.get("/like/{publicacion_id}&{usuario_id}", status_code=status.HTTP_200_OK, tags=["GET"])
-# async def get_like(publicacion_id: int, usuario_id: int, db: db_dependency):
-#     """da un like con el id de publicacion y del usuario"""
-#     db_like = db.query(models.Likes).filter(models.Likes.IdPublicacionId == publicacion_id, models.Likes.IdUsuario)
-#     if db_like is None:
-#         raise HTTPException(status_code=404, detail="like no encontrado")
-#     return db_like
-
-@app.get("/publicaciones/{usuario_id}", status_code=status.HTTP_200_OK, tags=["GET"])
+@app.get("/publicaciones/{usuario_id}", status_code=status.HTTP_200_OK, tags=["LISTAS"])
 async def get_publicaciones_de_usuario(usuario_id: int, db: db_dependency):
     """da las publicaciones de un usuario"""
     db_publicaciones = db.query(models.Publicacion).filter(models.Publicacion.IdUsuario == usuario_id)
@@ -122,7 +131,8 @@ async def get_publicaciones_de_usuario(usuario_id: int, db: db_dependency):
         raise HTTPException(status_code=404, detail="usuario no encontrado")
     return db_publicaciones
 
-# contadores
+# CONTADORES
+
 @app.get("/contadores/likes/{publicacion_id}", status_code=status.HTTP_200_OK, tags=["CONTADORES"])
 async def get_num_likes(publicacion_id: int, db: db_dependency):
     """da la cantidad de likes que tiene una publicacion"""
@@ -130,6 +140,7 @@ async def get_num_likes(publicacion_id: int, db: db_dependency):
     if db_likes is None:
         raise HTTPException(status_code=404, detail="publicacion no encontrada")
     return db_likes
+
 @app.get("/contadores/comentarios/{publicacion_id}", status_code=status.HTTP_200_OK, tags=["CONTADORES"])
 async def get_num_comentarios(publicacion_id: int, db: db_dependency):
     """da la cantidad de comentarios que tiene una publicacion"""
@@ -137,6 +148,7 @@ async def get_num_comentarios(publicacion_id: int, db: db_dependency):
     if db_comentarios is None:
         raise HTTPException(status_code=404, detail="publicacion no encontrada")
     return db_comentarios
+
 @app.get("/contadores/publicaciones/{usuario_id}", status_code=status.HTTP_200_OK, tags=["CONTADORES"])
 async def get_num_publicaciones(usuario_id: int, db: db_dependency):
     """da la cantidad de publicaciones que ha hecho el usuario"""
@@ -144,46 +156,54 @@ async def get_num_publicaciones(usuario_id: int, db: db_dependency):
     if db_publicaciones is None:
         raise HTTPException(status_code=404, detail="usuario no encontrado")
     return db_publicaciones
+
 @app.get("/contadores/hashtags/{hashtag_id}", status_code=status.HTTP_200_OK, tags=["CONTADORES"])
 async def get_num_hashtag(hashtag_id: int, db: db_dependency):
-    """da la cantidad de veces que se ha utilizado el hashtag"""
+    """da la cantidad que se ha utilizado el hashtag"""
     db_hashtag = db.query(models.Hashtag).filter(models.Hashtag.Id == hashtag_id).count()
     if db_hashtag is None:
         raise HTTPException(status_code=404, detail="usuario no encontrado")
     return db_hashtag
 
 # POST
-@app.post("/usuarios/", status_code=status.HTTP_201_CREATED, tags=["POST"])
+
+@app.post("/usuario/", status_code=status.HTTP_201_CREATED, tags=["POST"])
 async def crear_usuario(usuario: UsuarioBase, db: db_dependency):
     db_usuario = models.Usuario(**usuario.dict())
     db.add(db_usuario)
     db.commit()
-@app.post("/roles/", status_code=status.HTTP_201_CREATED, tags=["POST"])
+
+@app.post("/rol/", status_code=status.HTTP_201_CREATED, tags=["POST"])
 async def crear_rol(rol: RolBase, db: db_dependency):
     db_rol = models.Rol(**rol.dict())
     db.add(db_rol)
     db.commit()
-@app.post("/publicaciones/", status_code=status.HTTP_201_CREATED, tags=["POST"])
+
+@app.post("/publicacion/", status_code=status.HTTP_201_CREATED, tags=["POST"])
 async def crear_publicacion(publicacion: PublicacionBase, db: db_dependency):
     db_publicacion = models.Publicacion(**publicacion.dict())
     db.add(db_publicacion)
     db.commit()
-@app.post("/comentarios/", status_code=status.HTTP_201_CREATED, tags=["POST"])
+
+@app.post("/comentario/", status_code=status.HTTP_201_CREATED, tags=["POST"])
 async def crear_comentario(comentario: ComentarioBase, db: db_dependency):
     db_comentario = models.Comentario(**comentario.dict())
     db.add(db_comentario)
     db.commit()
-@app.post("/hashtags/", status_code=status.HTTP_201_CREATED, tags=["POST"])
+
+@app.post("/hashtag/", status_code=status.HTTP_201_CREATED, tags=["POST"])
 async def crear_hashtag(hashtag: HashtagBase, db: db_dependency):
     db_hashtag = models.Comentario(**hashtag.dict())
     db.add(db_hashtag)
     db.commit()
+
 @app.post("/detalle_publicacion_hashtag/", status_code=status.HTTP_201_CREATED, tags=["POST"])
 async def crear_detalle_publicacion_hashtag(pubhash: DetallePublicacionHashtagBase, db: db_dependency):
     db_pubhash = models.DetallePublicacionHashtag(**pubhash.dict())
     db.add(db_pubhash)
     db.commit()
-@app.post("/likes/", status_code=status.HTTP_201_CREATED, tags=["POST"])
+
+@app.post("/like/", status_code=status.HTTP_201_CREATED, tags=["POST"])
 async def crear_like(like: LikesBase, db: db_dependency):
     db_like = models.Likes(**like.dict())
     db.add(db_like)
