@@ -10,21 +10,25 @@ pip install fastapi sqlalchemy pymysql uvicorn
 3.  abrir la terminal (bash), correr los siguientes comandos:
 
 ```bash
-    instalar los modulos necesarios para el servidor
-    `python -m pip install virtualenv fastapi sqlalchemy pymysql uvicorn`
-    ir a la carpeta de back-end
-    `cd back-end`
-    crear un virtual environment, llamarlo venv, asegurarse que este creado dentro de la carpeta back-end
-    `python -m virutalenv venv`
-    activar el virtual environment
-    `source venv/Source/activate`
-    volver a instalar los modulos necesarios para el servidor dentro del virtual environment
-    `pip install virtualenv fastapi sqlalchemy pymysql uvicorn`
-    iniciar el servidor
-    `uvicorn main:app --reload`
+    # instalar los modulos necesarios para el servidor
+    python -m pip install virtualenv fastapi sqlalchemy pymysql uvicorn
+    # ir a la carpeta de back-end
+    cd back-end`
+    # crear un virtual environment, llamarlo venv, asegurarse que este creado dentro de la carpeta back-end
+    python -m virutalenv venv
+    # activar el virtual environment
+    source venv/Source/activate
+    # volver a instalar los modulos necesarios para el servidor dentro del virtual environment
+    pip install virtualenv fastapi sqlalchemy pymysql uvicorn
+    # iniciar el servidor
+    uvicorn main:app --reload
+```
 
 <!-- documentacion -->
 
 root/docs
 https://www.youtube.com/watch?v=zzOwU41UjTM
+
+```
+
 ```
