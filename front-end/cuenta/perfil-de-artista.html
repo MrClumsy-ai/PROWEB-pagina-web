@@ -7,52 +7,36 @@
     <link rel="stylesheet" href="perfil-artista.css" />
 </head>
 <body>
-    <!-- Barra de navegación -->
-    <nav class="navbar">
+    <div class="navbar">
         <a href="#" class="navbar-title">Inicio</a>
-        <div>
-            <a href="#">Perfil</a>
-        </div>
-    </nav>
-
-    <!-- Contenido principal -->
-    <div class="container flex-center">
-        <!-- Sección izquierda: Foto y contactos -->
-        <div class="left-section">
-            <div class="profile-picture">
-                <p>pfp</p>
-            </div>
-            <h2>Contactos del artista</h2>
-            <div class="contact-box">
-                <p>@loremipsum</p>
-                <p>Núm: 51 555 555 555</p>
-            </div>
-        </div>
-
-        <!-- Sección derecha: Publicaciones -->
-        <div class="right-section">
-            <h1>Nombre de usuario (Artista)</h1>
-            <hr class="divider" />
-            <div class="publications">
-                <div class="publication">
-                    <p>(publicación)</p>
-                </div>
-                <div class="publication">
-                    <p>(publicación)</p>
-                </div>
-                <div class="publication">
-                    <p>(publicación)</p>
-                </div>
-                <div class="publication">
-                    <p>(publicación)</p>
-                </div>
-            </div>
-        </div>
+        <span class="navbar-icon">&#9881;</span>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Posteo de Artes. Todos los derechos reservados.</p>
-    </footer>
+    <div class="container">
+        <div class="flex-center">
+            <div class="profile-card">
+                <div class="profile-pfp">
+                    <img src="pfp-placeholder.png" alt="Foto de perfil del artista" />
+                </div>
+                <div class="profile-info">
+                    <h2>Nombre de Usuario</h2>
+                    <p>Descripción breve del artista.</p>
+                </div>
+                <div class="contact-info">
+                    <button>Contactos del Artista</button>
+                    <p>@loremipsum <br />Num: 51 555 555 555</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <h3>Publicaciones del Artista</h3>
+        <div class="publications-grid">
+            <div class="publication-card">Publicación 1</div>
+            <div class="publication-card">Publicación 2</div>
+            <div class="publication-card">Publicación 3</div>
+            <div class="publication-card">Publicación 4</div>
+        </div>
+    </div>
+    <footer>© 2024 Proyecto de Artes</footer>
 </body>
 </html>
