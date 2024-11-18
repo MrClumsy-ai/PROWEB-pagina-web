@@ -12,6 +12,7 @@ class UsuarioBase(BaseModel):
     IdRol: int
     Nombre: str
     Contrasena: str
+    # CAMBIAR
     FotoDePerfil: str
 
 class RolBase(BaseModel):
