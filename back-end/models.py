@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String, BLOB
+from sqlalchemy import Boolean, Column, Integer, String, BLOB, PrimaryKeyConstraint
 from database import Base
 
 class Usuario(Base):
@@ -21,11 +21,6 @@ class Publicacion(Base):
     Titulo = Column(String(256))
     Descripcion = Column(String(512))
 
-class Hashtag(Base):
-    __tablename__ = "hashtag"
-    Id = Column(Integer, primary_key=True, index=True)
-    Texto = Column(String(128))
-
 class Comentario(Base):
     __tablename__ = "comentario"
     Id = Column(Integer, primary_key=True, index=True)
@@ -33,5 +28,23 @@ class Comentario(Base):
     Texto = Column(String(128))
     IdUsuario = Column(Integer) # fk
 
+class Hashtag(Base):
+    __tablename__ = "hashtag"
+    Id = Column(Integer, primary_key=True, index=True)
+    Texto = Column(String(128))
+
+class DetallePublicacionHashtag(Base):
+    __tablename__ = "detallePublicacionHashtag"
+    IdPublicacion = Column(Integer) # fk
+    IdHashtag = Column(Integer) # fk
+    __table_args__ = (
+        PrimaryKeyConstraint(IdPublicacion, IdHashtag)
+    )
+
 class Likes(Base):
-    __tablename__ = "comentario"
+    __tablename__ = "likes"
+    IdPublicacion = Column(Integer) # fk
+    IdUsuario = Column(Integer) # fk
+    __table_args__ = (
+        PrimaryKeyConstraint(IdPublicacion, IdUsuario)
+    )
