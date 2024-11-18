@@ -1,0 +1,109 @@
+/* General Styles */
+body {
+    background-color: #333; /* Fondo oscuro */
+    color: #fff; /* Texto claro */
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #f47946; /* Color naranja */
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 0;
+}
+
+.navbar-icon {
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.navbar-icon:hover {
+    color: #ffd700;
+}
+
+/* Main Content Styles */
+.main-content {
+    padding: 40px 20px;
+    min-height: calc(100vh - 80px); /* Ajuste para ocupar la mayor parte de la pantalla */
+}
+
+.create-account-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: #f5e6c8;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Styles */
+.form-label {
+    color: #333;
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #f47946;
+    box-shadow: 0 0 5px rgba(244, 121, 70, 0.5);
+}
+
+/* Button Styles */
+.btn-warning {
+    background-color: #f47946;
+    border: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-warning:hover {
+    background-color: #e56f35;
+    transform: scale(1.05);
+}
+
+.btn-outline-pink {
+    border: 2px dashed #ff69b4;
+    color: #ff69b4;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-pink:hover {
+    background-color: #ff69b4;
+    color: #fff;
+}
+
+.btn-outline-purple {
+    border: 2px dashed #800080;
+    color: #800080;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-purple:hover {
+    background-color: #800080;
+    color: #fff;
+}
+
+/* Link Styles */
+.text-primary {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.text-primary:hover {
+    text-decoration: underline;
+}
