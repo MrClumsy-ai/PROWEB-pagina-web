@@ -14,3 +14,4 @@ desde xampp control panel: iniciar apache & mysql
 <!-- documentacion -->
 
 root/docs
+https://www.youtube.com/watch?v=zzOwU41UjTM&t=363s
