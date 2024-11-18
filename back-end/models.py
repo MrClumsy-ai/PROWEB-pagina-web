@@ -20,6 +20,7 @@ class Publicacion(Base):
     IdUsuario = Column(Integer) # fk
     Titulo = Column(String(256))
     Descripcion = Column(String(512))
+    Imagen = Column(BLOB)
 
 class Comentario(Base):
     __tablename__ = "comentario"
