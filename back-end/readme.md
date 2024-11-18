@@ -1,9 +1,11 @@
-abrir mysql workbench, y correr el codigo de !basededatos.txt
+<!-- abrir mysql workbench, y correr el codigo de !basededatos.txt
 terminal (bash)
 python -m pip install virtualenv
 virtualenv venv
 source venv/Source/activate
-pip install fastapi sqlalchemy pymysql uvicorn
+pip install fastapi sqlalchemy pymysql uvicorn -->
+
+## Instalacion e inicializacion del servidor
 
 1.  instalar mysql, poner la contrasena de root como 'root'
 2.  correr mysql, correr el codigo de !basededatos.txt
@@ -24,9 +26,12 @@ pip install fastapi sqlalchemy pymysql uvicorn
     uvicorn main:app --reload
 ```
 
-<!-- documentacion -->
+## Documentacion de la api
 
-root/docs
+una vez iniciado el servidor, ir a la ruta:
+/docs
+
+tutorial de back-end
 https://www.youtube.com/watch?v=zzOwU41UjTM
 
 ```
